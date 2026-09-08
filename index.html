@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover Islam — an English and Tagalog learning portal about the Qur’an, Sunnah, worship, character, and the beautiful teachings of Islam.">
+<title>Discover Islam — English &amp; Tagalog Learning Portal</title>
+<style>
+:root{
+  --ink:#10251f; --deep:#0c211b; --green:#173d31; --sage:#718878;
+  --cream:#f5f0e5; --paper:#fffdf8; --gold:#b99755; --line:#ded7c8;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.08;margin:0}
+a{color:inherit;text-decoration:none}
+button,a{outline-offset:4px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold)}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.nav{position:fixed;z-index:20;top:0;left:0;right:0;padding:18px 0;background:linear-gradient(rgba(7,24,19,.92),rgba(7,24,19,.15));color:white}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{font-family:Georgia,serif;font-size:1.35rem;letter-spacing:.04em}
+.brand span{color:#d5bb7b}
+.nav-links{display:flex;gap:25px;font-size:.92rem}
+.nav-links a{opacity:.88}.nav-links a:hover{opacity:1}
+.menu{display:none;background:none;border:1px solid rgba(255,255,255,.45);color:white;padding:7px 10px;border-radius:6px}
+.hero{min-height:92vh;position:relative;display:flex;align-items:center;overflow:hidden;background:
+ radial-gradient(circle at 75% 25%,rgba(185,151,85,.20),transparent 28%),
+ linear-gradient(120deg,#0b211b 0%,#173d31 56%,#315446 100%);color:white}
+.hero::before{content:"";position:absolute;inset:0;opacity:.16;background-image:
+ linear-gradient(30deg,transparent 46%,rgba(255,255,255,.3) 47%,transparent 48%),
+ linear-gradient(150deg,transparent 46%,rgba(255,255,255,.22) 47%,transparent 48%);
+background-size:70px 70px}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,18,14,.75),rgba(5,18,14,.12) 70%),linear-gradient(0deg,rgba(5,18,14,.5),transparent 35%,rgba(5,18,14,.35))}
+.hero-content{position:relative;z-index:2;max-width:650px;padding:150px 0 100px}
+.kicker{color:#d8bd7c;text-transform:uppercase;letter-spacing:.18em;font-size:.74rem;font-weight:700;margin-bottom:18px}
+.hero h1{font-size:clamp(3.2rem,7vw,6.5rem);letter-spacing:-.045em;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.hero p{font-size:clamp(1rem,2vw,1.2rem);max-width:590px;color:rgba(255,255,255,.84);margin:25px 0 32px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;font-weight:700;border:1px solid transparent;transition:.25s ease;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;transform:translateX(-120%) skewX(-18deg);background:rgba(255,255,255,.25);transition:.45s}
+.btn:hover::after{transform:translateX(120%) skewX(-18deg)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(185,151,85,.18)}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:#c6a45f;color:#10251f}
+.btn-ghost{border-color:rgba(255,255,255,.4);color:white}
+.section{padding:100px 0}
+.cream{background:var(--cream)}
+.section-head{max-width:700px;margin-bottom:45px}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#8b6d34;font-weight:800;margin-bottom:12px}
+.section h2{font-size:clamp(2.3rem,5vw,4rem);letter-spacing:-.035em}
+.lead{font-size:1.08rem;color:#5a675f}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);padding:28px;border-radius:14px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:#bca979}
+.card-num{font-family:Georgia,serif;color:var(--gold);font-size:1.2rem;margin-bottom:22px}
+.card h3{font-size:1.45rem;margin-bottom:10px}
+.card p{color:#5e6a63;margin:0}
+.quote{background:var(--deep);color:white;padding:95px 0;position:relative;overflow:hidden}
+.quote .container{max-width:900px;text-align:center}
+.quote-mark{font-family:Georgia,serif;color:#c6a45f;font-size:5rem;line-height:.5}
+.quote blockquote{font-family:Georgia,serif;font-size:clamp(1.7rem,4vw,3rem);line-height:1.25;margin:25px 0}
+.quote cite{font-style:normal;color:#c9d0c9;font-size:.9rem}
+.questions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+details{border-top:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-family:Georgia,serif;font-size:1.25rem;font-weight:700}
+details p{color:#5d685f;max-width:650px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.panel{background:var(--green);color:white;padding:45px;border-radius:18px;min-height:390px;display:flex;flex-direction:column;justify-content:center}
+.panel h2{font-size:clamp(2.2rem,4vw,3.7rem)}
+.panel p{color:#d8dfd9}
+.list{padding:0;margin:25px 0 0;list-style:none}
+.list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.list li::before{content:"✦";color:#d0b36e;margin-right:10px}
+.cta{text-align:center;background:#eadfca}
+.cta h2{max-width:760px;margin:auto}
+.cta p{max-width:600px;margin:18px auto 28px;color:#5f675e}
+.footer{background:#091913;color:#c4cdc6;padding:32px 0;font-size:.85rem}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){
+ .nav-links{display:none;position:absolute;top:65px;left:24px;right:24px;background:#0b211b;padding:18px;border-radius:10px;flex-direction:column}
+ .nav-links.open{display:flex}.menu{display:block}
+ .container{width:min(var(--max),calc(100% - 32px))}
+ .hero{min-height:auto}.hero-content{padding:155px 0 105px}
+ .grid,.questions,.split{grid-template-columns:1fr}
+ .section{padding:75px 0}.panel{min-height:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}
+ *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+.lang-btn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 12px;cursor:pointer;font:inherit;font-size:.8rem}
+.lang-btn:hover,.lang-btn.active{background:var(--green);color:white;border-color:var(--green)}
+
+.hero-photo{position:absolute;inset:0;background-image:url('islam-assets/mosque.svg');background-size:cover;background-position:center;opacity:.34;transform:scale(1.04)}
+.media-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.photo{min-height:420px;border-radius:18px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.photo.quran{background-image:linear-gradient(0deg,rgba(8,25,19,.72),rgba(8,25,19,.05)),url('islam-assets/quran.svg')}
+.photo.mosque{background-image:linear-gradient(0deg,rgba(8,25,19,.72),rgba(8,25,19,.05)),url('islam-assets/mosque.svg')}
+.photo-content{position:absolute;left:28px;right:28px;bottom:26px;color:white}
+.portal-tools{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin:25px 0}
+.portal-tools input,.portal-tools select{width:100%;border:1px solid var(--line);padding:13px 15px;border-radius:10px;background:white;font:inherit}
+.small-btn{border:1px solid var(--line);background:white;padding:12px 15px;border-radius:10px;cursor:pointer;font:inherit}
+.quran-card{border:1px solid var(--line);border-radius:16px;padding:28px;background:var(--paper)}
+.arabic{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:2.25rem;line-height:1.9;text-align:right;direction:rtl}
+.translation{margin-top:18px;color:#56635b;font-size:1.02rem}
+.translation-box{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.translation-box div{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.translation-box b{display:block;margin-bottom:6px;color:#8b6d34}
+.lesson-progress{height:7px;background:#e4dfd4;border-radius:99px;overflow:hidden;margin:18px 0}.lesson-progress span{display:block;width:20%;height:100%;background:var(--gold)}
+@media(max-width:800px){.media-grid,.translation-box{grid-template-columns:1fr}.portal-tools{grid-template-columns:1fr}.photo{min-height:300px}}
+a:not(.btn){text-decoration-thickness:1px;text-underline-offset:3px}
+/* V3 visual direction: mosque + Muslim brothers, premium editorial layout */
+:root{
+  --gold2:#e2c98e;
+  --shadow:0 20px 55px rgba(13,35,28,.12);
+}
+.hero{min-height:96vh}
+.hero-photo{opacity:.48}
+.hero-content{max-width:760px}
+.hero h1{max-width:760px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
+  border:1px solid rgba(226,201,142,.45);border-radius:999px;
+  background:rgba(7,24,19,.35);backdrop-filter:blur(8px);
+  color:#f0ddb0;font-size:.78rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:18px
+}
+.hero-credit{font-size:.9rem;color:rgba(255,255,255,.72);margin:22px 0 28px}
+.section-intro{max-width:760px}
+.visual-card{
+  position:relative;overflow:hidden;border-radius:22px;min-height:430px;
+  background:#173d31;box-shadow:var(--shadow)
+}
+.visual-card img{width:100%;height:100%;min-height:430px;object-fit:cover;display:block}
+.visual-card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,25,19,.03),rgba(8,25,19,.82))
+}
+.visual-caption{position:absolute;z-index:2;left:30px;right:30px;bottom:28px;color:#fff}
+.visual-caption h3{font-size:2rem;margin-top:5px}
+.visual-caption p{margin:8px 0 0;color:rgba(255,255,255,.78)}
+.feature-strip{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch
+}
+.mini-visual{
+  border-radius:18px;overflow:hidden;min-height:250px;position:relative;
+  background:#10251f;box-shadow:var(--shadow)
+}
+.mini-visual img{width:100%;height:100%;min-height:250px;object-fit:cover;display:block}
+.mini-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,25,19,.8))}
+.mini-visual .caption{position:absolute;z-index:2;left:22px;bottom:20px;color:#fff}
+.mini-visual .caption h3{font-size:1.5rem}
+.language-switch{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px
+}
+.language-switch .lang-btn{background:#fff}
+.language-switch .lang-btn.active{background:var(--green)}
+.source-note{font-size:.78rem;color:#707a73;margin-top:10px}
+@media(max-width:800px){
+  .feature-strip{grid-template-columns:1fr}
+  .visual-card,.visual-card img{min-height:330px}
+}
+
+</style>
+</head>
+<body>
+<header class="nav">
+ <div class="container nav-inner">
+  <a class="brand" href="#top">Discover <span>Islam</span></a>
+  <button class="menu" aria-label="Open menu" aria-expanded="false">Menu</button>
+  <nav class="nav-links" aria-label="Main navigation">
+   <a href="#opening">Opening</a><a href="#about">Islam</a><a href="#quran-reader">Qur’an</a><a href="#hadith-library">Hadith</a><a href="#prophet">Prophet ﷺ</a><a href="#faith-pillars">Six Pillars</a><a href="#pillars">Five Pillars</a><a href="#new-muslim">Start Here</a><a href="#sources">Sources</a>
+  </nav>
+ </div>
+</header>
+
+<main id="top">
+<section class="hero">
+ <div class="hero-photo" aria-hidden="true"></div>
+ <div class="hero-scrim"></div>
+ <div class="container">
+  <div class="hero-content reveal">
+   <div class="hero-badge">Islam • Knowledge • Character</div>
+   <h1>Discover the <span style="color:#e2c98e">True Beauty</span> of Islam.</h1>
+   <p>A faith of peace, guidance, worship, and compassion — presented through a calm, respectful learning experience.</p>
+   <div class="hero-credit">For Allah. With gratitude. · <strong>Brother Abdul Malik Ronquillo Jumuwad</strong></div>
+   <div class="actions">
+    <a class="btn btn-primary" href="#teachings">Explore the teachings</a>
+    <a class="btn btn-ghost" href="#questions">I’m curious</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section cream" id="teachings">
+ <div class="container">
+  <div class="section-head reveal">
+   <div class="eyebrow">The heart of the message</div>
+   <h2>Simple principles. Deep meaning.</h2>
+   <p class="lead">Islam teaches a way of life centered on worship of the One God and the development of good character.</p>
+  </div>
+  <div class="grid">
+   <article class="card reveal"><div class="card-num">01</div><h3>Mercy</h3><p>Compassion, forgiveness, and kindness are central values in Islamic teaching.</p></article>
+   <article class="card reveal"><div class="card-num">02</div><h3>Justice</h3><p>People are encouraged to be fair, truthful, trustworthy, and responsible toward others.</p></article>
+   <article class="card reveal"><div class="card-num">03</div><h3>Purpose</h3><p>Life is understood as an opportunity to know God, worship Him, and do what is good.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="quote">
+ <div class="container reveal">
+  <div class="quote-mark">“</div>
+  <blockquote>Indeed, Allah commands justice, excellence, and giving to relatives.</blockquote>
+  <cite>Qur’an 16:90 — translation meaning</cite>
+ </div>
+</section>
+
+<section class="section" id="questions">
+ <div class="container">
+  <div class="section-head reveal">
+   <div class="eyebrow">Start with a question</div>
+   <h2>Curiosity is welcome here.</h2>
+   <p class="lead">You do not need to know anything about Islam before you begin.</p>
+  </div>
+  <div class="questions">
+   <details class="reveal"><summary>Who is Allah?</summary><p>“Allah” is the Arabic word for God. Islam teaches that God is One, without partners, and the Creator of all things.</p></details>
+   <details class="reveal"><summary>Who is Muhammad ﷺ?</summary><p>Muhammad ﷺ is regarded by Muslims as the final prophet and messenger of God, who conveyed the Qur’an and taught its principles through his example.</p></details>
+   <details class="reveal"><summary>What is the Qur’an?</summary><p>The Qur’an is the central scripture of Islam, believed by Muslims to be the word of God revealed to Muhammad ﷺ.</p></details>
+   <details class="reveal"><summary>Why do Muslims pray?</summary><p>Muslims pray to worship and remember God, seek guidance, express gratitude, and maintain a regular connection with Him.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="section cream" id="quran">
+ <div class="container split">
+  <div class="reveal">
+   <div class="eyebrow">The Qur’an</div>
+   <h2>A book to read, reflect on, and understand.</h2>
+   <p class="lead">Explore its message with context and reliable translations. A verse is best understood as part of the wider passage and its meaning.</p>
+  </div>
+  <div class="panel reveal">
+   <div class="eyebrow">A reminder</div>
+   <h2>“With hardship comes ease.”</h2>
+   <p>Qur’an 94:5–6 — translation meaning. The passage reminds believers that difficulty is not the whole story.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="daily">
+ <div class="container">
+  <div class="section-head reveal">
+   <div class="eyebrow">Islam in daily life</div>
+   <h2>Faith is reflected in character.</h2>
+  </div>
+  <div class="grid">
+   <article class="card reveal"><div class="card-num">01</div><h3>Family</h3><p>Respect, care, responsibility, and maintaining family ties are strongly emphasized.</p></article>
+   <article class="card reveal"><div class="card-num">02</div><h3>Charity</h3><p>Helping people in need and giving from what one has are important expressions of faith.</p></article>
+   <article class="card reveal"><div class="card-num">03</div><h3>Character</h3><p>Honesty, patience, humility, gratitude, and keeping promises are qualities Muslims are encouraged to cultivate.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section cta">
+ <div class="container reveal">
+  <div class="eyebrow">No pressure. Just learning.</div>
+  <h2>Come with an open mind. Learn. Reflect. Ask.</h2>
+  <p>Whether you are Muslim, curious about Islam, or simply looking to understand your neighbor better, you are welcome to explore.</p>
+  
+<div style="display:flex;gap:7px;align-items:center;margin-top:28px;flex-wrap:wrap">
+ <span style="font-size:.8rem;color:#657067">Language:</span>
+ <button class="lang-btn active" data-lang="en">English</button>
+ <button class="lang-btn" data-lang="tl">Tagalog</button>
+</div>
+<div class="actions" style="justify-content:center">
+   <a class="btn btn-primary" href="#top">Begin again</a>
+  </div>
+ </div>
+</section>
+
+
+<section class="section cream" id="opening">
+ <div class="container split">
+  <div class="reveal">
+   <div class="eyebrow">In the name of Allah</div>
+   <h2>For Allah. With gratitude.</h2>
+   <p class="lead">Bismillāhir-Raḥmānir-Raḥīm.</p>
+   <p>This project is made with gratitude to Allah ﷻ, acknowledging that every ability, opportunity, and benefit comes from Him. May this small effort become a means of learning, reflection, kindness, and better understanding of Islam.</p>
+   <p><strong>Created by Brother Abdul Malik Ronquillo Jumuwad</strong></p>
+   <div class="source-note">A humble learning project offered with gratitude to Allah ﷻ.</div>
+   <p style="color:#6b746d">A Muslim brother sharing an invitation to learn about Islam with sincerity, respect, and good character.</p>
+  </div>
+  <div class="panel reveal">
+   <div class="eyebrow">Our intention</div>
+   <h2>To invite through knowledge, wisdom, and kindness.</h2>
+   <p>Not to pressure anyone, but to open a door for sincere questions and understanding.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="about"><div class="container split"><div class="panel reveal"><div class="eyebrow">What Islam means</div><h2>One God. One human family. A life of purpose.</h2><p>Islam means submission to God. Muslims believe in one God, His prophets, His revealed scriptures, the angels, the Day of Judgment, and divine decree.</p></div><div class="reveal"><div class="eyebrow">A foundation</div><h2>Five pillars of practice.</h2><ul class="list" style="color:var(--ink)"><li style="border-color:var(--line)">Shahadah — testimony of faith</li><li style="border-color:var(--line)">Salah — five daily prayers</li><li style="border-color:var(--line)">Zakah — obligatory charity</li><li style="border-color:var(--line)">Sawm — fasting in Ramadan</li><li style="border-color:var(--line)">Hajj — pilgrimage to Makkah when able</li></ul></div></div></section>
+<section class="section cream" id="hadith"><div class="container"><div class="section-head reveal"><div class="eyebrow">Hadith & character</div><h2>Faith is not only what we say. It shapes how we live.</h2><p class="lead">Hadith reports preserve teachings, statements, and examples attributed to Prophet Muhammad ﷺ. Reliable sources and context matter when studying them.</p></div><div class="grid"><article class="card reveal"><div class="card-num">01</div><h3>Speak good</h3><p>Islam encourages truthful, beneficial speech and restraint from harmful words.</p></article><article class="card reveal"><div class="card-num">02</div><h3>Show mercy</h3><p>Kindness toward people and creation is repeatedly emphasized in Islamic teachings.</p></article><article class="card reveal"><div class="card-num">03</div><h3>Seek knowledge</h3><p>Learning, reflection, and asking sincere questions are valuable parts of understanding faith.</p></article></div></div></section>
+<section class="section" id="languages">
+<div class="container">
+ <div class="section-head reveal section-intro">
+  <div class="eyebrow">Choose your language</div>
+  <h2>English & Tagalog learning.</h2>
+  <p class="lead">A simple bilingual experience for readers who want to understand Islam clearly and respectfully.</p>
+ </div>
+ <div class="grid">
+  <article class="card reveal"><div class="card-num">EN</div><h3>English</h3><p>Clear explanations for international readers, students, and beginners.</p></article>
+  <article class="card reveal"><div class="card-num">TL</div><h3>Tagalog</h3><p>Accessible explanations for Filipino readers and families exploring Islam.</p></article>
+  <article class="card reveal"><div class="card-num">01</div><h3>One message</h3><p>Same core lesson, presented in two languages so visitors can learn comfortably.</p></article>
+ </div>
+</div>
+</section>
+<section class="section cream" id="resources"><div class="container"><div class="section-head reveal"><div class="eyebrow">Learn responsibly</div><h2>Good questions deserve good sources.</h2><p class="lead">Each Qur’an verse, hadith, and historical claim should be connected to a clearly identified primary or reputable scholarly source.</p></div><div class="questions"><details class="reveal"><summary>Qur’an</summary><p>Show the surah and verse number and identify the translation. Translations convey meaning rather than replacing the Arabic text.</p></details><details class="reveal"><summary>Hadith</summary><p>Identify the collection and reference, and distinguish authentic reports from disputed or weak narrations.</p></details><details class="reveal"><summary>History</summary><p>Separate religious belief from historical claims and provide sources when discussing people, dates, and events.</p></details><details class="reveal"><summary>Ask a scholar</summary><p>For detailed religious rulings or personal guidance, consult a qualified and trusted Islamic scholar.</p></details></div></div></section>
+<section class="section" id="welcome"><div class="container split"><div class="reveal"><div class="eyebrow">For the curious</div><h2>You can start with one honest question.</h2><p class="lead">No pressure. No assumption. Just an opportunity to understand what Muslims believe and why.</p><div class="actions"><a class="btn btn-primary" href="#questions">Ask a question</a><a class="btn" style="border:1px solid var(--line)" href="#resources">See learning guide</a></div></div><div class="panel reveal"><div class="eyebrow">A simple invitation</div><h2>Learn before you judge.</h2><p>Listen carefully. Read the sources. Reflect honestly. Understanding begins with curiosity.</p></div></div></section>
+
+<section class="section cream" id="gallery">
+<div class="container">
+ <div class="section-head reveal section-intro">
+  <div class="eyebrow">A visual welcome</div>
+  <h2>Masjid, Qur’an, and Muslim brotherhood.</h2>
+  <p class="lead">Masjid architecture, Qur’an study, Islamic geometry, and brotherhood visuals are included locally inside this package.</p>
+ </div>
+
+ <div class="feature-strip">
+  <div class="visual-card reveal">
+   <img src="islam-assets/mosque.svg" alt="Mosque architecture at a peaceful time of day">
+   <div class="visual-caption">
+    <div class="eyebrow" style="color:#e2c98e">Masjid</div>
+    <h3>A place of prayer, community, and remembrance.</h3>
+    <p>Beautiful Islamic spaces can become a visual invitation to pause and reflect.</p>
+   </div>
+  </div>
+
+  <div class="visual-card reveal">
+   <img src="islam-assets/muslim-brothers.svg" alt="Two Muslim brothers praying inside a mosque" loading="lazy">
+   <div class="visual-caption">
+    <div class="eyebrow" style="color:#e2c98e">Muslim Brothers</div>
+    <h3>Worship, humility, and brotherhood.</h3>
+    <p>A respectful image of Muslim men praying together.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="feature-strip" style="margin-top:18px">
+  <div class="mini-visual reveal">
+   <img src="islam-assets/quran.svg" alt="Open Qur'an for reading and reflection" loading="lazy">
+   <div class="caption">
+    <div class="eyebrow" style="color:#e2c98e">Qur’an</div>
+    <h3>Read. Listen. Reflect.</h3>
+   </div>
+  </div>
+  <div class="panel reveal" style="min-height:250px">
+   <div class="eyebrow">A welcoming portal</div>
+   <h2>Learn with sincerity and good character.</h2>
+   <p>Whether you are Muslim or simply curious, this space is designed to help you begin with knowledge and respect.</p>
+  </div>
+ </div>
+
+ <p class="source-note">All featured visuals are local assets included in this website package. No image needs to be downloaded separately after extraction.</p>
+</div>
+</section>
+<section class="section" id="quran-reader">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">Qur’an reader</div><h2>Read the Qur’an side by side.</h2><p class="lead">The portal is designed for Arabic text with translation panels. For complete reading and audio, visitors can also use the linked Quran.com resource.</p></div>
+ <div class="portal-tools reveal"><input id="qSearch" placeholder="Search this demo, e.g. mercy, prayer, patience"><select id="qLang"><option>English</option><option>Tagalog</option></select><button class="small-btn" id="qSearchBtn">Search</button></div>
+ <div class="quran-card reveal" id="quranResult">
+  <div class="eyebrow">Al-Fātiḥah · 1:1</div>
+  <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="translation-box" style="grid-template-columns:repeat(2,1fr)">
+   <div><b>English</b>In the name of Allah, the Most Compassionate, Most Merciful.</div>
+   <div><b>Tagalog</b>Sa ngalan ni Allah, ang Mahabagin, ang Maawain.</div>
+  </div>
+  <p class="translation">Note: translations convey meaning. For a full reader, use a reputable Qur’an platform and show the exact translator/source for every translation.</p>
+  <a class="btn btn-primary" href="https://quran.com/" target="_blank" rel="noopener">Open full Qur’an reader</a>
+ </div>
+</div>
+</section>
+
+<section class="section cream" id="hadith-library">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">Hadith library</div><h2>Study the Sunnah with references.</h2><p class="lead">Hadith should be presented with collection, number, grading where available, and context—not as isolated quotes.</p></div>
+ <div class="grid">
+  <article class="card reveal"><div class="card-num">01</div><h3>Sahih al-Bukhari</h3><p>A major hadith collection. Use the collection and hadith number when citing a report.</p><a class="btn" style="margin-top:18px;border:1px solid var(--line)" href="https://sunnah.com/bukhari" target="_blank" rel="noopener">Browse collection</a></article>
+  <article class="card reveal"><div class="card-num">02</div><h3>Sahih Muslim</h3><p>Another major collection, presented with Arabic text, translations, books, and numbered reports.</p><a class="btn" style="margin-top:18px;border:1px solid var(--line)" href="https://sunnah.com/muslim" target="_blank" rel="noopener">Browse collection</a></article>
+  <article class="card reveal"><div class="card-num">03</div><h3>Search Hadith</h3><p>Search by phrase or topic, then check the original collection and reference before sharing.</p><a class="btn" style="margin-top:18px;border:1px solid var(--line)" href="https://sunnah.com/" target="_blank" rel="noopener">Search Sunnah.com</a></article>
+ </div>
+</div>
+</section>
+
+<section class="section" id="prophet">
+<div class="container split">
+ <div class="reveal"><div class="eyebrow">The Prophet Muhammad ﷺ</div><h2>A life to study through reliable sources.</h2><p class="lead">The Prophet Muhammad ﷺ is regarded by Muslims as the final messenger of Allah. His life, teachings, worship, mercy, leadership, and treatment of people form an important part of Islamic learning.</p><p>For a serious biography section, the portal should distinguish Qur’anic references, authenticated hadith, and historical reports, with references for each claim.</p></div>
+ <div class="panel reveal"><div class="eyebrow">Learn with care</div><h2>Read the sources, not just the quote.</h2><p>Understanding context helps prevent misinterpretation and makes the learning experience more trustworthy.</p></div>
+</div>
+</section>
+
+<section class="section" id="faith-pillars">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">Six Articles of Faith</div><h2>Six Pillars of Faith.</h2><p class="lead">Muslims believe in six essential matters of faith: Allah, His angels, His revealed books, His messengers, the Last Day, and divine decree.</p></div>
+ <div class="visual-card reveal" style="margin-bottom:24px"><img src="islam-assets/six-pillars.svg" alt="Illustrated diagram of the Six Articles of Faith" style="width:100%;height:auto;display:block"><div class="visual-caption"><div class="eyebrow" style="color:#e2c98e">Six Articles of Faith</div><h3>Six essential matters of belief.</h3></div></div>
+ <div class="grid">
+  <article class="card reveal"><div class="card-num">01</div><h3>Belief in Allah</h3><p>To believe that Allah is One, without partner, and the Creator and Lord of all things.</p></article>
+  <article class="card reveal"><div class="card-num">02</div><h3>Belief in the Angels</h3><p>To believe in the angels Allah created and in the roles He has assigned to them.</p></article>
+  <article class="card reveal"><div class="card-num">03</div><h3>Belief in the Books</h3><p>To believe in Allah’s revealed scriptures, including the Qur’an as His final revealed book.</p></article>
+  <article class="card reveal"><div class="card-num">04</div><h3>Belief in the Messengers</h3><p>To believe in Allah’s prophets and messengers, including Muhammad ﷺ as the final messenger.</p></article>
+  <article class="card reveal"><div class="card-num">05</div><h3>Belief in the Last Day</h3><p>To believe that people will be resurrected, judged, and held accountable for their deeds.</p></article>
+  <article class="card reveal"><div class="card-num">06</div><h3>Belief in Divine Decree</h3><p>To believe in Allah’s knowledge and decree, while people remain responsible for their choices and actions.</p></article>
+ </div>
+</div>
+</section>
+<section class="section cream" id="pillars">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">Interactive learning</div><h2>Learn the Five Pillars one step at a time.</h2><p class="lead">A simple beginner path. Select a lesson to reveal its core idea.</p></div>
+ <div class="lesson-progress"><span id="lessonBar"></span></div>
+ <div class="grid">
+  <article class="card lesson reveal" data-step="1"><div class="card-num">01</div><h3>Shahadah</h3><p>Testimony of faith: affirming the oneness of Allah and the messengership of Muhammad ﷺ.</p><button class="small-btn lesson-btn">Mark learned</button></article>
+  <article class="card lesson reveal" data-step="2"><div class="card-num">02</div><h3>Salah</h3><p>The five daily prayers establish regular worship, remembrance, and discipline.</p><button class="small-btn lesson-btn">Mark learned</button></article>
+  <article class="card lesson reveal" data-step="3"><div class="card-num">03</div><h3>Zakah</h3><p>Obligatory charity, with conditions and rules that should be learned carefully.</p><button class="small-btn lesson-btn">Mark learned</button></article>
+  <article class="card lesson reveal" data-step="4"><div class="card-num">04</div><h3>Sawm</h3><p>Fasting during Ramadan is an act of worship and spiritual discipline.</p><button class="small-btn lesson-btn">Mark learned</button></article>
+  <article class="card lesson reveal" data-step="5"><div class="card-num">05</div><h3>Hajj</h3><p>Pilgrimage to the Ka‘bah in Makkah for those who are able and meet its conditions.</p><button class="small-btn lesson-btn">Mark learned</button></article>
+ </div>
+</div>
+</section>
+
+<section class="section" id="new-muslim">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">New to Islam?</div><h2>A gentle learning path for beginners.</h2></div>
+ <div class="grid">
+  <article class="card reveal"><div class="card-num">01</div><h3>Start with belief</h3><p>Learn who Allah is, what Muslims believe, and what the Qur’an is.</p></article>
+  <article class="card reveal"><div class="card-num">02</div><h3>Learn the basics</h3><p>Explore the Five Pillars, prayer, purification, fasting, and everyday character.</p></article>
+  <article class="card reveal"><div class="card-num">03</div><h3>Ask and reflect</h3><p>Keep asking sincere questions and seek qualified teachers for detailed religious guidance.</p></article>
+ </div>
+</div>
+</section>
+
+<section class="section cream" id="sources">
+<div class="container">
+ <div class="section-head reveal"><div class="eyebrow">Sources & references</div><h2>Build trust through transparency.</h2><p class="lead">The portal should clearly identify where religious texts and explanations come from.</p></div>
+ <div class="questions">
+  <details class="reveal"><summary>Qur’an.com</summary><p>Useful for reading, listening, searching, translations, tafsir, and study tools.</p><a href="https://quran.com/" target="_blank" rel="noopener">quran.com</a></details>
+  <details class="reveal"><summary>Sunnah.com</summary><p>A searchable resource containing major hadith collections and reference information.</p><a href="https://sunnah.com/" target="_blank" rel="noopener">sunnah.com</a></details>
+  <details class="reveal"><summary>Scholarly guidance</summary><p>For fiqh, fatwa, or personal religious rulings, consult qualified scholars rather than relying on isolated website excerpts.</p></details>
+  <details class="reveal"><summary>Translation policy</summary><p>Every translated Qur’an or hadith passage on this site should name its translator/source. Do not present a translation as the Arabic revelation itself.</p></details>
+ </div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+ <div class="container footer-inner">
+  <span>© 2026 Discover Islam · Created by Brother Abdul Malik Ronquillo Jumuwad</span>
+  <span>Learn with respect • Share with kindness • Verify your sources</span>
+ </div>
+</footer>
+
+<script>
+const menu=document.querySelector('.menu'), nav=document.querySelector('.nav-links');
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const items=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
+items.forEach(i=>io.observe(i));
+
+const translations={
+  "en":{},
+  "tl":{
+    "Opening":"Pambungad","Islam":"Islam","Qur’an":"Qur’an","Hadith":"Hadith","Prophet ﷺ":"Propeta ﷺ","5 Pillars":"5 Haligi","6 Beliefs":"6 Paniniwala","Start Here":"Magsimula Dito","Sources":"Mga Sanggunian",
+    "Islam • Knowledge • Character":"Islam • Kaalaman • Mabuting Asal","Discover the beauty of Islam.":"Tuklasin ang kagandahan ng Islam.",
+    "A faith of peace, guidance, worship, and compassion — presented through a calm, respectful learning experience.":"Isang bukas at magiliw na lugar upang matuto tungkol sa pananampalataya, mga pagpapahalaga nito, at mga prinsipyong gumagabay sa milyun-milyong tao sa buong mundo.",
+    "Created with gratitude to Allah ﷻ · Brother Abdul Malik Ronquillo Jumuwad":"Ginawa nang may pasasalamat kay Allah ﷻ · Brother Abdul Malik Ronquillo Jumuwad",
+    "Explore the teachings":"Tuklasin ang mga aral","I’m curious":"Nais kong malaman",
+    "The heart of the message":"Puso ng mensahe","Simple principles. Deep meaning.":"Payak na mga prinsipyo. Malalim na kahulugan.",
+    "Islam teaches a way of life centered on worship of the One God and the development of good character.":"Itinuturo ng Islam ang isang paraan ng pamumuhay na nakasentro sa pagsamba sa Nag-iisang Diyos at paghubog ng mabuting asal.",
+    "Mercy":"Awa","Compassion, forgiveness, and kindness are central values in Islamic teaching.":"Ang habag, pagpapatawad, at kabaitan ay mahahalagang pagpapahalaga sa mga aral ng Islam.",
+    "Justice":"Katarungan","People are encouraged to be fair, truthful, trustworthy, and responsible toward others.":"Hinihikayat ang mga tao na maging makatarungan, tapat, mapagkakatiwalaan, at responsable sa kapwa.",
+    "Purpose":"Layunin","Life is understood as an opportunity to know God, worship Him, and do what is good.":"Ang buhay ay pagkakataon upang makilala ang Diyos, sambahin Siya, at gumawa ng mabuti.",
+    "Start with a question":"Magsimula sa isang tanong","Curiosity is welcome here.":"Malugod na tinatanggap ang pag-uusisa dito.","You do not need to know anything about Islam before you begin.":"Hindi mo kailangang may alam na tungkol sa Islam bago magsimula.",
+    "Who is Allah?":"Sino si Allah?","Who is Muhammad ﷺ?":"Sino si Muhammad ﷺ?","What is the Qur’an?":"Ano ang Qur’an?","Why do Muslims pray?":"Bakit nagdarasal ang mga Muslim?",
+    "“Allah” is the Arabic word for God. Islam teaches that God is One, without partners, and the Creator of all things.":"Ang “Allah” ay salitang Arabe para sa Diyos. Itinuturo ng Islam na iisa ang Diyos, walang katambal, at Siya ang Lumikha ng lahat ng bagay.",
+    "Muhammad ﷺ is regarded by Muslims as the final prophet and messenger of God, who conveyed the Qur’an and taught its principles through his example.":"Si Muhammad ﷺ ay kinikilala ng mga Muslim bilang huli sa mga propeta at mensahero ng Diyos. Ipinahayag niya ang Qur’an at itinuro ang mga prinsipyo nito sa pamamagitan ng kanyang halimbawa.",
+    "The Qur’an is the central scripture of Islam, believed by Muslims to be the word of God revealed to Muhammad ﷺ.":"Ang Qur’an ang pangunahing banal na kasulatan ng Islam, na pinaniniwalaan ng mga Muslim na salita ng Diyos na ipinahayag kay Muhammad ﷺ.",
+    "Muslims pray to worship and remember God, seek guidance, express gratitude, and maintain a regular connection with Him.":"Nagdarasal ang mga Muslim upang sambahin at alalahanin ang Diyos, humingi ng patnubay, magpasalamat, at panatilihin ang regular na ugnayan sa Kanya.",
+    "The Qur’an":"Ang Qur’an","A book to read, reflect on, and understand.":"Isang aklat na babasahin, pagninilayan, at uunawain.",
+    "Explore its message with context and reliable translations. A verse is best understood as part of the wider passage and its meaning.":"Tuklasin ang mensahe nito gamit ang konteksto at mapagkakatiwalaang salin. Mas nauunawaan ang isang talata kapag tinitingnan kasama ang buong sipi at kahulugan nito.",
+    "A reminder":"Isang paalala","“With hardship comes ease.”":"“Kasama ng paghihirap ay kaginhawaan.”","Faith is reflected in character.":"Makikita ang pananampalataya sa mabuting asal.",
+    "Family":"Pamilya","Charity":"Kawanggawa","Character":"Mabuting Asal","Respect, care, responsibility, and maintaining family ties are strongly emphasized.":"Binibigyang-diin ang paggalang, pag-aalaga, pananagutan, at pagpapanatili ng ugnayan sa pamilya.",
+    "Helping people in need and giving from what one has are important expressions of faith.":"Ang pagtulong sa nangangailangan at pagbibigay mula sa kung ano ang mayroon ay mahahalagang pagpapakita ng pananampalataya.",
+    "Honesty, patience, humility, gratitude, and keeping promises are qualities Muslims are encouraged to cultivate.":"Ang katapatan, pagtitiis, pagpapakumbaba, pasasalamat, at pagtupad sa pangako ay mga katangiang hinihikayat na linangin ng mga Muslim.",
+    "No pressure. Just learning.":"Walang pamimilit. Pagkatuto lamang.","Come with an open mind. Learn. Reflect. Ask.":"Lumapit nang may bukas na isip. Matuto. Magnilay. Magtanong.",
+    "Whether you are Muslim, curious about Islam, or simply looking to understand your neighbor better, you are welcome to explore.":"Muslim ka man, interesado sa Islam, o nais lamang na mas maunawaan ang iyong kapwa, malugod kang inaanyayahang tumuklas.",
+    "Language:":"Wika:","Begin again":"Magsimula muli",
+    "In the name of Allah":"Sa ngalan ni Allah","For Allah. With gratitude.":"Para kay Allah. May pasasalamat.",
+    "This project is made with gratitude to Allah ﷻ, acknowledging that every ability, opportunity, and benefit comes from Him. May this small effort become a means of learning, reflection, kindness, and better understanding of Islam.":"Ang proyektong ito ay ginawa nang may pasasalamat kay Allah ﷻ, na kinikilala na ang bawat kakayahan, pagkakataon, at biyaya ay mula sa Kanya. Nawa’y maging daan ang maliit na pagsisikap na ito sa pagkatuto, pagninilay, kabaitan, at mas mabuting pag-unawa sa Islam.",
+    "A Muslim brother sharing an invitation to learn about Islam with sincerity, respect, and good character.":"Isang Muslim na kapatid na nag-aanyaya na matuto tungkol sa Islam nang may katapatan, paggalang, at mabuting asal.",
+    "Our intention":"Ang aming layunin","To invite through knowledge, wisdom, and kindness.":"Mag-anyaya sa pamamagitan ng kaalaman, karunungan, at kabaitan.","Not to pressure anyone, but to open a door for sincere questions and understanding.":"Hindi upang mamilit, kundi upang magbukas ng pinto para sa tapat na mga tanong at pag-unawa.",
+    "What Islam means":"Ano ang kahulugan ng Islam","One God. One human family. A life of purpose.":"Iisang Diyos. Isang sangkatauhan. Buhay na may layunin.","Islam means submission to God. Muslims believe in one God, His prophets, His revealed scriptures, the angels, the Day of Judgment, and divine decree.":"Ang Islam ay nangangahulugang pagsuko at pagsunod sa Diyos. Naniniwala ang mga Muslim sa iisang Diyos, sa Kanyang mga propeta, mga ipinahayag na kasulatan, mga anghel, Araw ng Paghuhukom, at banal na pagtatakda.",
+    "Five pillars of practice.":"Limang haligi ng pagsasagawa.","Shahadah — testimony of faith":"Shahadah — pagpapahayag ng pananampalataya","Salah — five daily prayers":"Salah — limang araw-araw na pagdarasal","Zakah — obligatory charity":"Zakah — obligadong kawanggawa","Sawm — fasting in Ramadan":"Sawm — pag-aayuno sa Ramadan","Hajj — pilgrimage to Makkah when able":"Hajj — paglalakbay sa Makkah para sa may kakayahan",
+    "Hadith & character":"Hadith at mabuting asal","Faith is not only what we say. It shapes how we live.":"Ang pananampalataya ay hindi lamang sinasabi. Hinuhubog nito kung paano tayo namumuhay.",
+    "Hadith reports preserve teachings, statements, and examples attributed to Prophet Muhammad ﷺ. Reliable sources and context matter when studying them.":"Pinapanatili ng mga ulat ng Hadith ang mga aral, pahayag, at halimbawa na iniuugnay kay Propeta Muhammad ﷺ. Mahalaga ang mapagkakatiwalaang sanggunian at konteksto sa pag-aaral nito.",
+    "Speak good":"Magsalita ng mabuti","Show mercy":"Magpakita ng awa","Seek knowledge":"Maghanap ng kaalaman","Islam encourages truthful, beneficial speech and restraint from harmful words.":"Hinihikayat ng Islam ang tapat at kapaki-pakinabang na pananalita at pag-iwas sa masasamang salita.","Kindness toward people and creation is repeatedly emphasized in Islamic teachings.":"Paulit-ulit na binibigyang-diin sa mga aral ng Islam ang kabaitan sa mga tao at sa nilikha.","Learning, reflection, and asking sincere questions are valuable parts of understanding faith.":"Ang pagkatuto, pagninilay, at pagtatanong nang tapat ay mahalagang bahagi ng pag-unawa sa pananampalataya.",
+    "Choose your language":"Piliin ang iyong wika","English & Tagalog learning.":"Pag-aaral sa English at Tagalog.","A simple bilingual experience for readers who want to understand Islam clearly and respectfully.":"Isang simpleng bilingual na karanasan para sa mga mambabasang gustong maunawaan ang Islam nang malinaw at may paggalang.","Clear explanations for international readers, students, and beginners.":"Malinaw na paliwanag para sa mga international reader, estudyante, at baguhan.","Accessible explanations for Filipino readers and families exploring Islam.":"Madaling maunawaang paliwanag para sa mga Pilipinong mambabasa at pamilyang tumutuklas sa Islam.","Same core lesson, presented in two languages so visitors can learn comfortably.":"Parehong pangunahing aral, ipinapakita sa dalawang wika upang mas komportable ang pagkatuto.",
+    "Masjid, Qur’an, and Muslim brotherhood.":"Masjid, Qur’an, at kapatiran ng mga Muslim.","The visuals are calm and respectful, keeping the focus on worship, learning, community, and reflection.":"Ang mga larawan ay payapa at magalang, na nakatuon sa pagsamba, pagkatuto, pamayanan, at pagninilay.","A place of prayer, community, and remembrance.":"Lugar ng pagdarasal, pamayanan, at pag-alaala sa Allah.","Beautiful Islamic spaces can become a visual invitation to pause and reflect.":"Ang magagandang lugar ng Islam ay maaaring maging paanyaya upang huminto at magnilay.","Worship, humility, and brotherhood.":"Pagsamba, pagpapakumbaba, at kapatiran.","A respectful image of Muslim men praying together.":"Isang magalang na larawan ng mga lalaking Muslim na sama-samang nagdarasal.","Read. Listen. Reflect.":"Basahin. Makinig. Magnilay.","A welcoming portal":"Isang bukas at magiliw na portal","Learn with sincerity and good character.":"Matuto nang may katapatan at mabuting asal.","Whether you are Muslim or simply curious, this space is designed to help you begin with knowledge and respect.":"Muslim ka man o simpleng interesado, ang lugar na ito ay dinisenyo upang matulungan kang magsimula sa kaalaman at paggalang.",
+    "Qur’an reader":"Qur’an reader","Read the Qur’an side by side.":"Basahin ang Qur’an nang magkatabi.","The portal is designed for Arabic text with translation panels. For complete reading and audio, visitors can also use the linked Quran.com resource.":"Dinisenyo ang portal para sa tekstong Arabe na may mga panel ng salin. Para sa kumpletong pagbabasa at audio, maaari ring gamitin ang naka-link na Quran.com.","Search":"Maghanap","Open full Qur’an reader":"Buksan ang buong Qur’an reader",
+    "Hadith library":"Aklatan ng Hadith","Study the Sunnah with references.":"Pag-aralan ang Sunnah na may mga sanggunian.","Hadith should be presented with collection, number, grading where available, and context—not as isolated quotes.":"Dapat ilahad ang Hadith kasama ang koleksyon, numero, antas ng pagiging mapagkakatiwalaan kung mayroon, at konteksto—hindi bilang hiwa-hiwalay na sipi.","Browse collection":"Tingnan ang koleksyon","Search Hadith":"Maghanap ng Hadith",
+    "The Prophet Muhammad ﷺ":"Si Propeta Muhammad ﷺ","A life to study through reliable sources.":"Isang buhay na dapat pag-aralan sa pamamagitan ng mapagkakatiwalaang sanggunian.","The Prophet Muhammad ﷺ is regarded by Muslims as the final messenger of Allah. His life, teachings, worship, mercy, leadership, and treatment of people form an important part of Islamic learning.":"Si Propeta Muhammad ﷺ ay kinikilala ng mga Muslim bilang huling mensahero ni Allah. Ang kanyang buhay, mga aral, pagsamba, awa, pamumuno, at pakikitungo sa mga tao ay mahalagang bahagi ng pag-aaral ng Islam.","For a serious biography section, the portal should distinguish Qur’anic references, authenticated hadith, and historical reports, with references for each claim.":"Sa isang seryosong bahagi tungkol sa talambuhay, dapat paghiwalayin ang mga sanggunian sa Qur’an, mapagkakatiwalaang Hadith, at mga ulat pangkasaysayan, na may sanggunian sa bawat pahayag.",
+    "Learn with care":"Matuto nang maingat","Read the sources, not just the quote.":"Basahin ang mga sanggunian, hindi lamang ang sipi.","Understanding context helps prevent misinterpretation and makes the learning experience more trustworthy.":"Ang pag-unawa sa konteksto ay nakatutulong upang maiwasan ang maling interpretasyon at gawing mas mapagkakatiwalaan ang pagkatuto.",
+    "Interactive learning":"Interaktibong pag-aaral","Learn the Five Pillars one step at a time.":"Alamin ang Limang Haligi nang paisa-isa.","A simple beginner path. Select a lesson to reveal its core idea.":"Isang simpleng landas para sa baguhan. Pumili ng aralin upang makita ang pangunahing ideya.","Mark learned":"Markahang natutuhan","Learned ✓":"Natutuhan ✓",
+    "Shahadah":"Shahadah","Salah":"Salah","Zakah":"Zakah","Sawm":"Sawm","Hajj":"Hajj","Testimony of faith: affirming the oneness of Allah and the messengership of Muhammad ﷺ.":"Pagpapahayag ng pananampalataya: pagpapatotoo sa kaisahan ni Allah at pagiging mensahero ni Muhammad ﷺ.","The five daily prayers establish regular worship, remembrance, and discipline.":"Ang limang araw-araw na pagdarasal ay nagtatatag ng regular na pagsamba, pag-alaala, at disiplina.","Obligatory charity, with conditions and rules that should be learned carefully.":"Obligadong kawanggawa, na may mga kundisyon at tuntuning dapat matutunang mabuti.","Fasting during Ramadan is an act of worship and spiritual discipline.":"Ang pag-aayuno sa Ramadan ay isang pagsamba at espirituwal na disiplina.","Pilgrimage to the Ka‘bah in Makkah for those who are able and meet its conditions.":"Paglalakbay sa Ka‘bah sa Makkah para sa may kakayahan at nakatutugon sa mga kundisyon nito.",
+    "New to Islam?":"Bago sa Islam?","A gentle learning path for beginners.":"Isang banayad na landas ng pagkatuto para sa mga baguhan.","Start with belief":"Magsimula sa pananampalataya","Learn the basics":"Alamin ang mga batayan","Ask and reflect":"Magtanong at magnilay","Learn who Allah is, what Muslims believe, and what the Qur’an is.":"Alamin kung sino si Allah, ano ang pinaniniwalaan ng mga Muslim, at ano ang Qur’an.","Explore the Five Pillars, prayer, purification, fasting, and everyday character.":"Tuklasin ang Limang Haligi, pagdarasal, paglilinis, pag-aayuno, at mabuting asal sa araw-araw.","Keep asking sincere questions and seek qualified teachers for detailed religious guidance.":"Patuloy na magtanong nang tapat at humanap ng kwalipikadong guro para sa detalyadong gabay sa relihiyon.",
+    "Sources & references":"Mga sanggunian at reperensya","Build trust through transparency.":"Bumuo ng tiwala sa pamamagitan ng pagiging malinaw.","The portal should clearly identify where religious texts and explanations come from.":"Dapat malinaw na tukuyin ng portal kung saan nagmula ang mga tekstong panrelihiyon at paliwanag.","Qur’an.com":"Qur’an.com","Sunnah.com":"Sunnah.com","Scholarly guidance":"Gabay ng mga iskolar","Translation policy":"Patakaran sa pagsasalin",
+    "Good questions deserve good sources.":"Ang magagandang tanong ay nararapat sa mabubuting sanggunian.","Learn responsibly":"Matutong may pananagutan","For detailed religious rulings or personal guidance, consult a qualified and trusted Islamic scholar.":"Para sa detalyadong hatol sa relihiyon o personal na gabay, kumonsulta sa isang kwalipikado at mapagkakatiwalaang iskolar ng Islam.",
+    "Masjid":"Masjid","Muslim Brothers":"Mga Kapatid na Muslim","Qur’an":"Qur’an","English":"English","Tagalog":"Tagalog",
+    "Six Articles of Faith":"Anim na Artikulo ng Pananampalataya","Six Pillars of Faith.":"Anim na Haligi ng Pananampalataya.","Muslims believe in six essential matters of faith: Allah, His angels, His revealed books, His messengers, the Last Day, and divine decree.":"Naniniwala ang mga Muslim sa anim na pangunahing usapin ng pananampalataya: Allah, Kanyang mga anghel, Kanyang mga ipinahayag na aklat, Kanyang mga mensahero, Huling Araw, at banal na pagtatakda.",
+    "Belief in Allah":"Paniniwala kay Allah","Belief in the Angels":"Paniniwala sa mga Anghel","Belief in the Books":"Paniniwala sa mga Aklat","Belief in the Messengers":"Paniniwala sa mga Mensahero","Belief in the Last Day":"Paniniwala sa Huling Araw","Belief in Divine Decree":"Paniniwala sa Banal na Pagtatakda",
+    "To believe that Allah is One, without partner, and the Creator and Lord of all things.":"Maniwala na iisa si Allah, walang katambal, at Siya ang Lumikha at Panginoon ng lahat ng bagay.","To believe in the angels Allah created and in the roles He has assigned to them.":"Maniwala sa mga anghel na nilikha ni Allah at sa mga tungkuling itinakda Niya sa kanila.","To believe in Allah’s revealed scriptures, including the Qur’an as His final revealed book.":"Maniwala sa mga ipinahayag na kasulatan ni Allah, kabilang ang Qur’an bilang Kanyang huling ipinahayag na aklat.","To believe in Allah’s prophets and messengers, including Muhammad ﷺ as the final messenger.":"Maniwala sa mga propeta at mensahero ni Allah, kabilang si Muhammad ﷺ bilang huling mensahero.","To believe that people will be resurrected, judged, and held accountable for their deeds.":"Maniwala na bubuhaying muli ang mga tao, hahatulan, at pananagutin sa kanilang mga gawa.","To believe in Allah’s knowledge and decree, while people remain responsible for their choices and actions.":"Maniwala sa kaalaman at pagtatakda ni Allah, habang nananatiling responsable ang tao sa kanyang mga pagpili at kilos."
+  }
+};
+
+function translatePage(lang){
+  const dict=translations[lang]||{};
+  document.documentElement.lang=lang==='tl'?'tl':'en';
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node=>{
+    const parent=node.parentElement;
+    if(!parent || ['SCRIPT','STYLE'].includes(parent.tagName)) return;
+    const raw=node.nodeValue;
+    const key=raw.trim();
+    if(dict[key]) node.nodeValue=raw.replace(key,dict[key]);
+  });
+  document.querySelectorAll('[data-original-placeholder]').forEach(el=>{
+    const key=el.dataset.originalPlaceholder;
+    el.placeholder=dict[key]||key;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>translatePage(btn.dataset.lang)));
+
+// Store placeholders before translation.
+document.querySelectorAll('input[placeholder]').forEach(el=>el.dataset.originalPlaceholder=el.placeholder);
+
+const qBtn=document.getElementById('qSearchBtn'), qInput=document.getElementById('qSearch'), qResult=document.getElementById('quranResult');
+if(qBtn){qBtn.addEventListener('click',()=>{const q=qInput.value.trim(); if(q){qResult.querySelector('.translation').textContent=(document.documentElement.lang==='tl'?'Demo ng paghahanap: “'+q+'”. Para sa production, ikonekta ang field na ito sa isang full Qur’an search API at tiyaking tama ang bawat salin at sanggunian.':'Search demo: “'+q+'”. Connect this field to a full Qur’an search API for production use; verify every returned translation and reference.');}});}
+let learned=0; document.querySelectorAll('.lesson-btn').forEach(b=>b.addEventListener('click',()=>{if(!b.dataset.done){b.dataset.done='1';b.textContent='Learned ✓';learned=Math.min(5,learned+1);document.getElementById('lessonBar').style.width=(learned*20)+'%';}}));
+</script>
+</body>
+</html>
